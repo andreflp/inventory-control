@@ -1,0 +1,64 @@
+type Query {
+  products: [Product!]!
+  suppliers: [Supplier!]!
+  categories: [Category!]!
+}
+
+type Mutation {
+  createProduct(
+    name: String!
+    cod: String!
+    price: Float!
+    supplierId: ID!
+    categoryId: ID!
+  ): Product!
+  createCategory(name: String!): Category!
+  createSupplier(
+    name: String!
+    address: String!
+    email: String!
+    registry: String!
+  ): Supplier!
+  updateProduct(
+    productId: ID!
+    name: String
+    cod: String
+    price: Float
+    supplierId: ID
+    categoryId: ID
+  ): Product!
+  updateCategory(categoryId: ID!, name: String): Category!
+  updateSupplier(
+    supplierId: ID!
+    name: String
+    address: String
+    email: String
+    registry: String
+  ): Supplier!
+  deleteProduct(productId: ID!): Product!
+  deleteCategory(categoryId: ID!): Category!
+  deleteSupplier(supplierId: ID!): Supplier!
+}
+
+type Product {
+  id: ID!
+  name: String!
+  cod: String!
+  price: Float!
+  supplier: Supplier!
+  category: Category!
+}
+
+type Category {
+  id: ID!
+  name: String!
+}
+
+type Supplier {
+  id: ID!
+  name: String!
+  address: String!
+  email: String!
+  registry: String!
+  products: [Product!]!
+}

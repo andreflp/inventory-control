@@ -1,0 +1,22 @@
+type Product {
+  id: ID! @id
+  name: String
+  cod: String!
+  price: Float!
+  supplier: Supplier! @relation(link: INLINE)
+  category: Category! @relation
+}
+
+type Category {
+  id: ID! @id 
+  name: String! @unique
+}
+
+type Supplier {
+  id: ID! @id
+  name: String!
+  address: String!
+  email: String!
+  registry: String!
+  products: [Product!]! 
+}
