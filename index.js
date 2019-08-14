@@ -1,6 +1,7 @@
 const { prisma } = require("./generated/prisma-client");
 const { GraphQLServer } = require("graphql-yoga");
 const resolvers = require("./src/resolvers/resolvers");
+const permissions = require("./src/security/authentication");
 
 const options = {
   port: 4000,
@@ -12,8 +13,12 @@ const options = {
 const server = new GraphQLServer({
   typeDefs: "./schema.graphql",
   resolvers,
-  context: {
-    prisma
+  middlewares: [permissions],
+  context: request => {
+    return {
+      ...request,
+      prisma
+    };
   }
 });
 

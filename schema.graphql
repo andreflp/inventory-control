@@ -38,6 +38,19 @@ type Mutation {
   deleteProduct(productId: ID!): Product!
   deleteCategory(categoryId: ID!): Category!
   deleteSupplier(supplierId: ID!): Supplier!
+  signup(email: String!, password: String!, name: String): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String
 }
 
 type Product {
