@@ -1,13 +1,13 @@
-const { rule, and, shield } = require("graphql-shield");
-const { getUserId } = require("../utils");
+const { rule, and, shield } = require("graphql-shield")
+const { getUserId } = require("../utils")
 
 const rules = {
   isAuthenticatedUser: rule()((parent, args, context) => {
-    const userId = getUserId(context);
-    console.log(userId);
-    return Boolean(userId);
+    const userId = getUserId(context)
+    console.log(userId)
+    return Boolean(userId)
   })
-};
+}
 
 const permissions = shield({
   Query: {
@@ -26,6 +26,6 @@ const permissions = shield({
     deleteCategory: rules.isAuthenticatedUser,
     deleteSupplier: rules.isAuthenticatedUser
   }
-});
+})
 
-module.exports = permissions;
+module.exports = permissions
