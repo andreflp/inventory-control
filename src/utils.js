@@ -15,6 +15,9 @@ function getUserId(context) {
     const token = Authorization.replace("Bearer ", "")
     const verifiedToken = verify(token, APP_SECRET)
     return verifiedToken && verifiedToken.userId
+  } else {
+    console.log("ERROR")
+    throw new AuthError()
   }
 }
 

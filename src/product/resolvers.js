@@ -17,6 +17,28 @@ const productResolvers = {
           connect: { id: args.categoryId }
         }
       })
+    },
+    updateProduct(root, args, context) {
+      const { productId, name, cod, price, supplierId, categoryId } = args
+      return context.prisma.updateProduct({
+        where: { id: productId },
+        data: {
+          name,
+          cod,
+          price,
+          supplier: {
+            connect: { id: supplierId }
+          },
+          category: {
+            connect: { id: categoryId }
+          }
+        }
+      })
+    },
+    deleteProduct(root, args, context) {
+      return context.prisma.deleteProduct({
+        id: args.productId
+      })
     }
   },
   Product: {

@@ -35,9 +35,9 @@ type Mutation {
     email: String
     registry: String
   ): Supplier!
-  deleteProduct(productId: ID!): Product!
-  deleteCategory(categoryId: ID!): Category!
-  deleteSupplier(supplierId: ID!): Supplier!
+  deleteProduct(productId: ID!): Product
+  deleteCategory(categoryId: ID!): Category
+  deleteSupplier(supplierId: ID!): Supplier
   signup(email: String!, password: String!, name: String): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
 }
